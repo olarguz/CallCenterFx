@@ -1,25 +1,34 @@
+
 package ar.com.almundo.callcenter.app;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-public class MainApp extends Application {
+public class MainApp extends Application
+{
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
+
         stage.setTitle("Call Center - almundo.com");
         stage.setScene(scene);
         stage.setResizable(false);
+        Platform.setImplicitExit(true);
+        stage.setOnCloseRequest((ae) ->
+        {
+            Platform.exit();
+            System.exit(0);
+        });
         stage.show();
     }
 
@@ -31,8 +40,8 @@ public class MainApp extends Application {
      *
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
-
 }

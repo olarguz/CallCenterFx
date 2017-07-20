@@ -74,11 +74,13 @@ public class FXMLController implements Initializable
 
         html.append("<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=US-ASCII\">");
         html.append("<style>");
-        html.append("td {background-color: #aaaaaa; font-family: Arial, Helvetica, san-serif;}");
+        html.append("td {background-color: #cccccc; font-family: Arial, Helvetica, san-serif;}");
         html.append(".operadorlibre {background-color: #00ff80; font-family: Arial, Helvetica, san-serif;}");
         html.append(".operadorocupado {background-color: #007180; font-family: Arial, Helvetica, san-serif;}");
+        html.append(".supervisor {background-color: #aaaaaa; font-family: Arial, Helvetica, san-serif;}");
         html.append(".supervisorlibre {background-color: #46A3ff; font-family: Arial, Helvetica, san-serif;}");
         html.append(".supervisorocupado {background-color: #004993; font-family: Arial, Helvetica, san-serif;}");
+        html.append(".director {background-color: #888888; font-family: Arial, Helvetica, san-serif;}");
         html.append(".directorlibre {background-color: #C46DF8; font-family: Arial, Helvetica, san-serif;}");
         html.append(".directorocupado {background-color: #600794; font-family: Arial, Helvetica, san-serif;}");
         html.append("</style>");

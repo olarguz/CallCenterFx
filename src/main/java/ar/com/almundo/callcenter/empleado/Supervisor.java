@@ -21,7 +21,7 @@ public class Supervisor extends Empleado
             estado = "T. : " + getTiempoRestante() + " s.";
         }
 
-        html.append("<td>").append(this.getClass().getSimpleName()).append("</td>");
+        html.append("<td class=\"supervisor\">").append(this.getClass().getSimpleName()).append("</td>");
         html.append("<td").append(css_class).append(">");
         html.append(estado);
 

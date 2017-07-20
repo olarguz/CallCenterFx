@@ -21,7 +21,7 @@ public class Director extends Empleado
             estado = "T. : " + getTiempoRestante() + " s.";
         }
 
-        html.append("<td>").append(this.getClass().getSimpleName()).append("</td>");
+        html.append("<td class=\"director\">").append(this.getClass().getSimpleName()).append("</td>");
         html.append("<td").append(css_class).append(">");
         html.append(estado);
 
