@@ -180,7 +180,7 @@ public class Dispatcher
      */
     public boolean hayEmpleadosLibres(Class<? extends Empleado> t)
     {
-        LinkedList e = Util.seleccionar(t, empleados);
+        LinkedList<? extends Empleado> e = Util.seleccionar(t, empleados);
         return Util.hayLibres(e);
     }
 
