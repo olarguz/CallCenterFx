@@ -3,14 +3,12 @@ package ar.com.almundo.callcenter.dispatcher;
 
 import ar.com.almundo.callcenter.empleado.Director;
 import ar.com.almundo.callcenter.empleado.Empleado;
-import ar.com.almundo.callcenter.empleado.EstadoEmpleado;
 import ar.com.almundo.callcenter.empleado.Operador;
 import ar.com.almundo.callcenter.empleado.Supervisor;
 import ar.com.almundo.callcenter.llamada.EstadoLlamada;
 import ar.com.almundo.callcenter.tools.GeneradorLlamadas;
 import ar.com.almundo.callcenter.llamada.Llamada;
 import ar.com.almundo.callcenter.tools.Util;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -47,6 +45,11 @@ public class Dispatcher
         operarios = (LinkedList<Operador>) Util.seleccionar(Operador.class, empleados);
         supervisores = (LinkedList<Supervisor>) Util.seleccionar(Supervisor.class, empleados);
         directores = (LinkedList<Director>) Util.seleccionar(Director.class, empleados);
+
+        for (Empleado empleado : empleados)
+        {
+            empleado.start();
+        }
 
         llamadas = new LinkedList<>();
     }
@@ -155,35 +158,30 @@ public class Dispatcher
         }
 
         // Se actualizan todas las llamadas que estan asignada a los empleados
-        empleados.stream().map((empleado) -> empleado.actualizarLlamada()).filter((llamadaATerminar) -> (llamadaATerminar != null)).map((llamadaATerminar) ->
+        for (Empleado empleado : empleados)
         {
-            System.out.println("Llamada terminada");
-            return llamadaATerminar;
-        }).forEachOrdered((llamadaATerminar) ->
-        {
-            llamadaATerminar = null;
-        });
+            Llamada llamadaFinalizada = empleado.getLlamadaFinalizada();
+            if (llamadaFinalizada != null)
+            {
+                System.out.println("Llamada terminada");
+                llamadaFinalizada = null;
+            }
+        }
     }
     //</editor-fold>
 
-    public boolean hayOperariosLibres()
+    /**
+     * Permite identificar los empleados dependiendo del la subclase a la que
+     * pertencen, y despues se pregunta si hay alguno libre. Este metodo es
+     * usado solo en la clase de prueba.
+     *
+     * @param t Clase de empleado por la que se quiere averiguar si hay libres.
+     * @return valor booleano que indica si hay al menos un empleado libre.
+     */
+    public boolean hayEmpleadosLibres(Class<? extends Empleado> t)
     {
-        return Util.hayLibres(operarios);
-    }
-
-    public boolean haySupervisoresLibres()
-    {
-        return Util.hayLibres(supervisores);
-    }
-
-    public boolean hayDirectoresLibres()
-    {
-        return Util.hayLibres(directores);
-    }
-
-    public int llamadasEnEspera()
-    {
-        return llamadas.size();
+        LinkedList e = Util.seleccionar(t, empleados);
+        return Util.hayLibres(e);
     }
 
     public Queue<Llamada> getLlamadas()

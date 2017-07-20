@@ -43,7 +43,8 @@ public class FXMLController implements Initializable
         engEmpleados = viewEmpleados.getEngine();
         engLlamadas = viewLlamadas.getEngine();
         
-        empleados = GeneradorEmpleados.crear(6, 2, 2);
+        // Se crean 15 empleados de los cuales 10 son empleados, 4 supervisores y 1 director.
+        empleados = GeneradorEmpleados.crear(10, 4, 1);
         dispatcher = new Dispatcher(empleados);
 
         engEmpleados.loadContent(crearHtmlEmpleados());
@@ -54,8 +55,9 @@ public class FXMLController implements Initializable
             segundo++;
             tSegundo.setText("" + segundo);
 
-            dispatcher.recibirLlamadasConRestriccion(10, 50);
-//            dispatcher.recibirLlamadasSinRestriccion(10, 50);
+            // Las llamadas nuevas se crean con una probabilidad del 20%
+//            dispatcher.recibirLlamadasConRestriccion(10, 20);
+            dispatcher.recibirLlamadasSinRestriccion(10, 20);
             dispatcher.dispatchCall();
 
             engEmpleados.loadContent(crearHtmlEmpleados());

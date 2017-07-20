@@ -1,7 +1,10 @@
 
 package ar.com.almundo.callcenter.dispatcher;
 
+import ar.com.almundo.callcenter.empleado.Director;
 import ar.com.almundo.callcenter.empleado.Empleado;
+import ar.com.almundo.callcenter.empleado.Operador;
+import ar.com.almundo.callcenter.empleado.Supervisor;
 import ar.com.almundo.callcenter.llamada.EstadoLlamada;
 import ar.com.almundo.callcenter.llamada.Llamada;
 import ar.com.almundo.callcenter.tools.GeneradorEmpleados;
@@ -55,9 +58,9 @@ public class DispatcherTest
         LinkedList<Empleado> empleados = GeneradorEmpleados.crear(5, 3, 2);
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasConRestriccion(20, 100);
-        int numLlamadasEsperaAntes = instance.llamadasEnEspera();
+        int numLlamadasEsperaAntes = instance.getLlamadas().size();
         instance.dispatchCall();
-        int numLlamadasEsperaDespues = instance.llamadasEnEspera();
+        int numLlamadasEsperaDespues = instance.getLlamadas().size();
 
         System.out.println("Llamadas en espera " + numLlamadasEsperaAntes + " " + numLlamadasEsperaDespues);
         assertTrue(numLlamadasEsperaAntes == 10 && numLlamadasEsperaDespues == 0);
@@ -74,7 +77,7 @@ public class DispatcherTest
         LinkedList<Empleado> empleados = GeneradorEmpleados.crear(5, 3, 2);
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasSinRestriccion(expResult, 100);
-        int numLlamadasEspera = instance.llamadasEnEspera();
+        int numLlamadasEspera = instance.getLlamadas().size();
 
         assertEquals(expResult, numLlamadasEspera);
     }
@@ -90,9 +93,9 @@ public class DispatcherTest
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasConRestriccion(10, 100);
         instance.dispatchCall();
-        boolean opeLibres = instance.hayOperariosLibres();
-        boolean supLibres = instance.haySupervisoresLibres();
-        boolean dirLibres = instance.hayDirectoresLibres();
+        boolean opeLibres = instance.hayEmpleadosLibres(Operador.class);
+        boolean supLibres = instance.hayEmpleadosLibres(Supervisor.class);
+        boolean dirLibres = instance.hayEmpleadosLibres(Director.class);
 
         assertTrue(!opeLibres && !supLibres && !dirLibres);
     }
@@ -109,7 +112,7 @@ public class DispatcherTest
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasConRestriccion(10, 100);
         instance.dispatchCall();
-        boolean opeLibres = instance.hayOperariosLibres();
+        boolean opeLibres = instance.hayEmpleadosLibres(Operador.class);
 
         assertEquals(expResult, opeLibres);
     }
@@ -126,7 +129,7 @@ public class DispatcherTest
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasConRestriccion(10, 100);
         instance.dispatchCall();
-        boolean supLibres = instance.haySupervisoresLibres();
+        boolean supLibres = instance.hayEmpleadosLibres(Supervisor.class);
 
         assertEquals(expResult, supLibres);
     }
@@ -143,7 +146,7 @@ public class DispatcherTest
         Dispatcher instance = new Dispatcher(empleados);
         instance.recibirLlamadasConRestriccion(10, 100);
         instance.dispatchCall();
-        boolean dirLibres = instance.hayDirectoresLibres();
+        boolean dirLibres = instance.hayEmpleadosLibres(Director.class);
 
         assertEquals(expResult, dirLibres);
     }

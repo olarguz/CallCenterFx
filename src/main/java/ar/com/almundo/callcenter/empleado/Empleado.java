@@ -3,21 +3,25 @@ package ar.com.almundo.callcenter.empleado;
 
 import ar.com.almundo.callcenter.llamada.EstadoLlamada;
 import ar.com.almundo.callcenter.llamada.Llamada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Olmedo
  */
-public abstract class Empleado
+public abstract class Empleado extends Thread
 {
 
     private Llamada llamada;
+    private Llamada llamadaFinalizada;
     private int tiempoRestante;
 
     public Empleado()
     {
         llamada = null;
         tiempoRestante = 0;
+        llamadaFinalizada = null;
     }
 
     /**
@@ -95,25 +99,50 @@ public abstract class Empleado
     //<editor-fold defaultstate="collapsed" desc="Metodo :: actualizarLlamada() -> Llamada">
     public Llamada actualizarLlamada()
     {
-        Llamada llamadaFinalizada = null;
+        Llamada llamadaTerminada = null;
 
         tiempoRestante--;
         if (tiempoRestante == 0)
         {
             llamada.setEstado(EstadoLlamada.TERMINADA);
-            llamadaFinalizada = llamada;
+            llamadaTerminada = llamada;
             llamada = null;
         }
 
-        return llamadaFinalizada;
+        return llamadaTerminada;
     }
     //</editor-fold>
+
+    public Llamada getLlamadaFinalizada()
+    {
+        Llamada aux = llamadaFinalizada;
+        llamadaFinalizada = null;
+        return aux;
+    }
 
     /**
      * Metodo abstracto para presentar un empleado en formato html.
      * @return
      */
     public abstract String toHtml();
+
+    @Override
+    public void run()
+    {
+        super.run(); 
+        while(true)
+        {
+            try
+            {
+                sleep(1000);
+                actualizarLlamada();
+            }
+            catch (InterruptedException ex)
+            {
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
     @Override
     public String toString()
