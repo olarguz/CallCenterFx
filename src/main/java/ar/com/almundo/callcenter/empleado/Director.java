@@ -20,12 +20,9 @@ public class Director extends Empleado
             css_class = " class=\"directorocupado\"";
             estado = "T. : " + getTiempoRestante() + " s.";
         }
-
         html.append("<td class=\"director\">").append(this.getClass().getSimpleName()).append("</td>");
-        html.append("<td").append(css_class).append(">");
-        html.append(estado);
-
-        html.append("</td>");
+        html.append("<td").append(css_class).append(">").append(estado).append("</td>");
+        html.append("<td>").append(getAtendidos()).append("</td>");
         html.append("</tr>");
         
         return html.toString();

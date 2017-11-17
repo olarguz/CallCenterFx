@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>70</y>
-      <w>1200</w>
-      <h>595</h>
+      <y>140</y>
+      <w>2400</w>
+      <h>1190</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter*
 fg=blue</panel_attributes>
@@ -16,10 +16,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>20</x>
-      <y>90</y>
-      <w>395</w>
-      <h>195</h>
+      <x>40</x>
+      <y>180</y>
+      <w>790</w>
+      <h>390</h>
     </coordinates>
     <panel_attributes>*app*
 fg=blue</panel_attributes>
@@ -28,10 +28,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>25</x>
-      <y>145</y>
-      <w>135</w>
-      <h>70</h>
+      <x>50</x>
+      <y>290</y>
+      <w>270</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.app::App*
 --
@@ -50,10 +50,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>440</x>
-      <y>90</y>
-      <w>270</w>
-      <h>155</h>
+      <x>880</x>
+      <y>180</y>
+      <w>540</w>
+      <h>310</h>
     </coordinates>
     <panel_attributes>*dispatcher*
 fg=blue</panel_attributes>
@@ -62,10 +62,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>115</y>
-      <w>220</w>
-      <h>115</h>
+      <x>920</x>
+      <y>230</y>
+      <w>440</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.dispatcher::Dispatcher*
 --
@@ -89,25 +89,30 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>370</y>
-      <w>165</w>
-      <h>110</h>
+      <x>520</x>
+      <y>690</y>
+      <w>350</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>/&lt;&lt;abstract&gt;&gt;/
 /*ar.com.almundo.callcenter.empleado::Empleado*/
 --
 - llamada: Llamada
+- llamadaFinalizada: Llamada
 - tiempoRestante: int
+- atendidos
 --
 + Empleado(): ctor
 + getTiempoRestante(): int
 + setTiempoRestante(int tiempoRestante): void
 + getLlamada(): Llamada
 + setLlamada(Llamada llamada): void
++ getAtendidos(): int
++ setAtendidos(int atendidos): void
 + darEstado(): EstadoEmpleado
 + actualizarLlamada(): Llamada
 + toString(): String
+/+ &lt;&lt;abstract&gt;&gt; toHtml(): String/
 
 bg=yellow
 fg=blue</panel_attributes>
@@ -116,16 +121,16 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>75</x>
-      <y>545</y>
-      <w>165</w>
-      <h>40</h>
+      <x>150</x>
+      <y>1090</y>
+      <w>330</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.empleado::Director*
 --
  
 --
- 
++ toHtml(): String
 bg=yellow
 fg=blue
 </panel_attributes>
@@ -134,16 +139,16 @@ fg=blue
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>255</x>
-      <y>545</y>
-      <w>175</w>
-      <h>40</h>
+      <x>510</x>
+      <y>1090</y>
+      <w>350</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.empleado::Operador*
 --
  
 --
-
++ toHtml(): String
 bg=yellow
 fg=blue</panel_attributes>
     <additional_attributes/>
@@ -151,16 +156,16 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>545</y>
-      <w>180</w>
-      <h>40</h>
+      <x>880</x>
+      <y>1090</y>
+      <w>360</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.empleado::Supervisor*
 --
  
 --
-
++ toHtml(): String
 bg=yellow
 fg=blue</panel_attributes>
     <additional_attributes/>
@@ -168,10 +173,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>20</x>
-      <y>345</y>
-      <w>640</w>
-      <h>260</h>
+      <x>40</x>
+      <y>650</y>
+      <w>1280</w>
+      <h>560</h>
     </coordinates>
     <panel_attributes>*empleado*
 fg=blue</panel_attributes>
@@ -180,65 +185,65 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>335</x>
-      <y>475</y>
-      <w>15</w>
-      <h>80</h>
+      <x>670</x>
+      <y>980</y>
+      <w>30</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>355</x>
-      <y>475</y>
-      <w>185</w>
-      <h>80</h>
+      <x>710</x>
+      <y>980</y>
+      <w>370</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0;350.0;90.0;350.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;350.0;60.0;350.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>155</x>
-      <y>475</y>
-      <w>175</w>
-      <h>80</h>
+      <x>310</x>
+      <y>980</y>
+      <w>350</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;330.0;90.0;10.0;90.0;10.0;140.0</additional_attributes>
+    <additional_attributes>330.0;10.0;330.0;60.0;10.0;60.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>395</x>
-      <y>160</y>
-      <w>75</w>
-      <h>15</h>
+      <x>790</x>
+      <y>320</y>
+      <w>150</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>315</x>
-      <y>230</y>
-      <w>15</w>
-      <h>150</h>
+      <x>630</x>
+      <y>460</y>
+      <w>30</w>
+      <h>250</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>35</x>
-      <y>440</y>
-      <w>200</w>
-      <h>55</h>
+      <x>70</x>
+      <y>880</y>
+      <w>400</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 *ar.com.almundo.callcenter.empleado::EstadoEmpleado*
@@ -253,32 +258,32 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>135</x>
-      <y>395</y>
-      <w>135</w>
-      <h>55</h>
+      <x>270</x>
+      <y>790</y>
+      <w>270</w>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0;250.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>345</x>
-      <y>225</y>
-      <w>205</w>
-      <h>155</h>
+      <x>690</x>
+      <y>450</y>
+      <w>410</w>
+      <h>260</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;290.0;10.0;190.0;390.0;190.0;390.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;190.0;390.0;190.0;390.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>795</x>
-      <y>95</y>
-      <w>375</w>
-      <h>275</h>
+      <x>1590</x>
+      <y>190</y>
+      <w>750</w>
+      <h>550</h>
     </coordinates>
     <panel_attributes>*llamada*
 fg=blue</panel_attributes>
@@ -287,10 +292,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>130</y>
-      <w>200</w>
-      <h>85</h>
+      <x>1760</x>
+      <y>260</y>
+      <w>400</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.llamada::Llamada*
 --
@@ -311,10 +316,10 @@ fg=blue
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>260</y>
-      <w>200</w>
-      <h>75</h>
+      <x>1760</x>
+      <y>520</y>
+      <w>400</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 *ar.com.almundo.callcenter.empleado::EstadoLlamada*
@@ -332,43 +337,43 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>975</x>
-      <y>210</y>
-      <w>15</w>
-      <h>60</h>
+      <x>1950</x>
+      <y>420</y>
+      <w>30</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>705</x>
-      <y>165</y>
-      <w>185</w>
-      <h>15</h>
+      <x>1350</x>
+      <y>330</y>
+      <w>430</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>350.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>410.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>180</y>
-      <w>470</w>
-      <h>215</h>
+      <x>860</x>
+      <y>360</y>
+      <w>920</w>
+      <h>430</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>920.0;10.0;610.0;10.0;610.0;410.0;10.0;410.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>900.0;10.0;570.0;10.0;570.0;410.0;10.0;410.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>770</x>
-      <y>410</y>
-      <w>400</w>
-      <h>245</h>
+      <x>1540</x>
+      <y>820</y>
+      <w>800</w>
+      <h>490</h>
     </coordinates>
     <panel_attributes>*tools*
 fg=blue</panel_attributes>
@@ -377,10 +382,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>785</x>
-      <y>575</y>
-      <w>370</w>
-      <h>60</h>
+      <x>1570</x>
+      <y>1150</y>
+      <w>740</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.tools::Util*
 --
@@ -389,7 +394,7 @@ fg=blue</panel_attributes>
 _+ seleccionar(t: Class&lt;? extends Empleado&gt;, empleados: LinkedList&lt;Empleado&gt;): LinkedList&lt;? extends Empleado&gt;_
 _+ hayLibres(empleados: LinkedList&lt;? extends Empleado&gt;): boolean_
 _+ asignarLlamada(empleados: LinkedList&lt;? extends Empleado&gt;, llamadas: Queue&lt;Llamada&gt;): boolean_
-
+_+ calcularLlamadasAtendidas(LinkedList&lt;? extends Empleado&gt; empleados): int_
 bg=yellow
 fg=blue</panel_attributes>
     <additional_attributes/>
@@ -397,10 +402,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>440</y>
-      <w>225</w>
-      <h>45</h>
+      <x>1720</x>
+      <y>880</y>
+      <w>450</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.tools::GeneradorLlamadas*
 --
@@ -416,10 +421,10 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>510</y>
-      <w>295</w>
-      <h>35</h>
+      <x>1640</x>
+      <y>1020</y>
+      <w>590</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.tools::GeneradorEmpleados*
 --
@@ -434,54 +439,54 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>965</x>
-      <y>365</y>
-      <w>15</w>
-      <h>65</h>
+      <x>1930</x>
+      <y>330</y>
+      <w>360</w>
+      <h>570</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>230.0;10.0;340.0;10.0;340.0;450.0;10.0;450.0;10.0;550.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
+      <x>860</x>
+      <y>900</y>
+      <w>730</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;510.0;10.0;510.0;310.0;710.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1250</x>
       <y>450</y>
-      <w>375</w>
-      <h>165</h>
+      <w>490</w>
+      <h>500</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;530.0;10.0;530.0;310.0;730.0;310.0</additional_attributes>
+    <additional_attributes>470.0;480.0;240.0;480.0;240.0;150.0;10.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>625</x>
-      <y>225</y>
-      <w>245</w>
-      <h>250</h>
+      <x>860</x>
+      <y>870</y>
+      <w>800</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>470.0;480.0;240.0;480.0;240.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>420</x>
-      <y>435</y>
-      <w>410</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;560.0;10.0;560.0;180.0;800.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;540.0;10.0;540.0;180.0;780.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>235</x>
-      <y>110</y>
-      <w>165</w>
-      <h>125</h>
+      <x>470</x>
+      <y>220</y>
+      <w>330</w>
+      <h>250</h>
     </coordinates>
     <panel_attributes>*ar.com.almundo.callcenter.app::FXMLController*
 --
@@ -507,10 +512,10 @@ fg=blue
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>155</x>
-      <y>175</y>
-      <w>90</w>
-      <h>15</h>
+      <x>310</x>
+      <y>350</y>
+      <w>180</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
@@ -518,10 +523,10 @@ fg=blue
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>5</x>
+      <x>10</x>
       <y>0</y>
-      <w>165</w>
-      <h>60</h>
+      <w>330</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>*Diagrama de Clases*
 
@@ -530,18 +535,40 @@ Proyecto: CallCenter - almundo.com
 Olmedo Arcila Guzmán
 
 fg=blue
-bg=magenta</panel_attributes>
+bg=light_gray</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>395</x>
-      <y>200</y>
-      <w>490</w>
-      <h>80</h>
+      <x>790</x>
+      <y>400</y>
+      <w>980</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>960.0;10.0;710.0;10.0;710.0;140.0;70.0;140.0;70.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1230</x>
+      <y>450</y>
+      <w>430</w>
+      <h>600</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>410.0;580.0;240.0;580.0;240.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1210</x>
+      <y>450</y>
+      <w>380</w>
+      <h>760</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>360.0;740.0;240.0;740.0;240.0;190.0;10.0;190.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -104,11 +104,11 @@ public class Util
      * @param llamadas Listado de llamadas en espera.
      * @return
      */
-    //<editor-fold defaultstate="collapsed" desc="Metodo :: asignarLlamada(LinkedList<? extends Empleado>, Queue<Llamada>) -> boolean">
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'asignarLlamada(LinkedList<? extends Empleado>, Queue<Llamada>) -> boolean'">
     public static boolean asignarLlamada(LinkedList<? extends Empleado> empleados, Queue<Llamada> llamadas)
     {
         boolean detenerCiclo = false;
-        
+
         for (Iterator<? extends Empleado> it = empleados.iterator(); !detenerCiclo && it.hasNext();)
         {
             Empleado empleado = it.next();
@@ -117,7 +117,7 @@ public class Util
                 Llamada llamadaAAtender = llamadas.poll();
                 if (llamadaAAtender != null)
                 {
-                    System.out.println("Llamada asignada a " + empleado.getClass().getSimpleName());
+                    System.out.println("Llamada asignada a " + empleado.getClass().getSimpleName() + " " + llamadaAAtender.getTiempoDuracion());
                     llamadaAAtender.setEstado(EstadoLlamada.ENPROCESO);
                     empleado.setLlamada(llamadaAAtender);
                 }
@@ -125,11 +125,29 @@ public class Util
                 {
                     detenerCiclo = true;
                 }
-                
             }
         }
-        
+
         return detenerCiclo;
+    }
+    //</editor-fold>
+
+    /**
+     * Este metodo permite calcular el numero de llamada atendidas por todos los
+     * empleados sin importar el tipo de empleado que es cada uno de ellos.
+     *
+     * @param empleados Lista con los empleados a los que se desea auditar el
+     * nuemero de llamadas que atendieron.
+     * @return numero de llamadas atendidas.
+     */
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'alcularLlamadasAtendidas(LinkedList<? extends Empleado>) -> int'">
+    public static int calcularLlamadasAtendidas(LinkedList<? extends Empleado> empleados)
+    {
+        int atendidas = 0;
+
+        atendidas = empleados.stream().map((empleado) -> empleado.getAtendidos()).reduce(atendidas, Integer::sum);
+
+        return atendidas;
     }
     //</editor-fold>
 }

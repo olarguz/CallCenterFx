@@ -46,18 +46,47 @@ public class Dispatcher
         supervisores = (LinkedList<Supervisor>) Util.seleccionar(Supervisor.class, empleados);
         directores = (LinkedList<Director>) Util.seleccionar(Director.class, empleados);
 
-        for (Empleado empleado : empleados)
-        {
-            empleado.start();
-        }
-
+        arrancarEmpleados();
         llamadas = new LinkedList<>();
     }
 
+    public LinkedList<Operador> getOperarios()
+    {
+        return operarios;
+    }
+
+    public LinkedList<Supervisor> getSupervisores()
+    {
+        return supervisores;
+    }
+
+    public LinkedList<Director> getDirectores()
+    {
+        return directores;
+    }
+
+    /**
+     * Permite inicializar los hilos de cada uno de los operadores que van a
+     * atendre las llamadas de los clientes.
+     *
+     * De esta forma se asegura que el programa maneje concurrencia. Al tener a
+     * cada operadore trabajando por su cuenta, sin importar si es un Operador,
+     * Supervisor o Director.
+     */
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'arrancarEmpleados ()'">
+    private void arrancarEmpleados()
+    {
+        empleados.forEach((empleado) ->
+        {
+            empleado.start();
+        });
+    }
+    //</editor-fold>
+
     /**
      * Este metodo permite crear un numero maximo de llamadas determinado por
-     * numMax llamadas. Existe una probabilidad de creacion para cada nueva
-     * llamada.
+     * <b>numMax</b> llamadas. Existe una probabilidad de creacion para cada
+     * nueva llamada.
      *
      * El funcionamiento del metodo consiste en que hay un numero maximo de
      * llamadas que pueden ser creadas, cada llamada tiene una probabilidad de
@@ -81,7 +110,7 @@ public class Dispatcher
         {
             if (llamadas.size() < 10)
             {
-                System.out.println("Llamada en espera");
+//                System.out.println("Llamada en espera");
                 llamada.setEstado(EstadoLlamada.ENESPERA);
                 llamadas.add(llamada);
             }
@@ -96,8 +125,8 @@ public class Dispatcher
 
     /**
      * Este metodo permite crear un numero maximo de llamadas determinado por
-     * numMax llamadas. Existe una probabilidad de creacion para cada nueva
-     * llamada.
+     * <b>numMax</b> llamadas. Existe una probabilidad de creacion para cada
+     * nueva llamada.
      *
      * El funcionamiento del metodo consiste en que hay un numero maximo de
      * llamadas que pueden ser creadas, cada llamada tiene una probabilidad de
@@ -116,7 +145,7 @@ public class Dispatcher
         LinkedList<Llamada> llamadasNuevas = GeneradorLlamadas.crearLlamadas(numMax, probabilidad);
         llamadasNuevas.forEach((llamada) ->
         {
-            System.out.println("Llamada en espera");
+//            System.out.println("Llamada en espera");
             llamada.setEstado(EstadoLlamada.ENESPERA);
             llamadas.add(llamada);
         });
@@ -178,11 +207,13 @@ public class Dispatcher
      * @param t Clase de empleado por la que se quiere averiguar si hay libres.
      * @return valor booleano que indica si hay al menos un empleado libre.
      */
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: hayEmpleadosLibres(Class<? extends Empleado>)">
     public boolean hayEmpleadosLibres(Class<? extends Empleado> t)
     {
         LinkedList<? extends Empleado> e = Util.seleccionar(t, empleados);
         return Util.hayLibres(e);
     }
+    //</editor-fold>
 
     public Queue<Llamada> getLlamadas()
     {

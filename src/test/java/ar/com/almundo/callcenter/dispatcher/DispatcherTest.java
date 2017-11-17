@@ -73,13 +73,16 @@ public class DispatcherTest
     public void testRecibirLlamadasSinRestriccion()
     {
         System.out.println("recibirLlamadasSinRestriccion");
-        int expResult = 20;
         LinkedList<Empleado> empleados = GeneradorEmpleados.crear(5, 3, 2);
         Dispatcher instance = new Dispatcher(empleados);
-        instance.recibirLlamadasSinRestriccion(expResult, 100);
-        int numLlamadasEspera = instance.getLlamadas().size();
+        instance.recibirLlamadasSinRestriccion(20, 100);
+        int numLlamadasEsperaAntes = instance.getLlamadas().size();
 
-        assertEquals(expResult, numLlamadasEspera);
+        instance.dispatchCall();
+        int numLlamadasEsperaDespues = instance.getLlamadas().size();
+
+        System.out.println("Llamadas en espera " + numLlamadasEsperaAntes + " " + numLlamadasEsperaDespues);
+        assertTrue(numLlamadasEsperaAntes == 20 && numLlamadasEsperaDespues == 10);
     }
 
     /**

@@ -7,10 +7,9 @@ package ar.com.almundo.callcenter.llamada;
  */
 public class Llamada
 {
-    
+
     private int tiempoDuracion;
     private EstadoLlamada estado;
-
 
     public Llamada(int tiempoDuracion, EstadoLlamada estado)
     {
@@ -58,14 +57,18 @@ public class Llamada
         this.tiempoDuracion = tiempoDuracion;
     }
 
+    /**
+     * Este metodo convierte los valores de un objeto en una celda de una tabla
+     * <code>html</code>.
+     *
+     * @return
+     */
     public String toHtml()
     {
-        StringBuilder html = new StringBuilder("<td>");
-        
-        html.append("T. ").append(tiempoDuracion);
-        
-        html.append("</td>");
+        StringBuilder html = new StringBuilder();
+
+        html.append("<td>").append("T. ").append(tiempoDuracion).append("</td>");
+
         return html.toString();
     }
-
 }

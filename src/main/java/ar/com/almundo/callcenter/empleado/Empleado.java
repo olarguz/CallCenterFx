@@ -16,12 +16,34 @@ public abstract class Empleado extends Thread
     private Llamada llamada;
     private Llamada llamadaFinalizada;
     private int tiempoRestante;
+    private int atendidos;
 
     public Empleado()
     {
         llamada = null;
         tiempoRestante = 0;
         llamadaFinalizada = null;
+        atendidos = 0;
+    }
+
+    /**
+     * Get the value of atendidos
+     *
+     * @return the value of atendidos
+     */
+    public int getAtendidos()
+    {
+        return atendidos;
+    }
+
+    /**
+     * Set the value of atendidos
+     *
+     * @param atendidos new value of atendidos
+     */
+    public void setAtendidos(int atendidos)
+    {
+        this.atendidos = atendidos;
     }
 
     /**
@@ -94,6 +116,9 @@ public abstract class Empleado extends Thread
      * En caso que el tiempo de atencion se diferente a 0, no hay llamada lista
      * para ser terminada. El metodo retorna null.
      *
+     * Se incrementa la variable atendidos cada vez que se termina de procesar
+     * una llamada.
+     *
      * @return Llamada finalizada o null.
      */
     //<editor-fold defaultstate="collapsed" desc="Metodo :: actualizarLlamada() -> Llamada">
@@ -107,21 +132,31 @@ public abstract class Empleado extends Thread
             llamada.setEstado(EstadoLlamada.TERMINADA);
             llamadaTerminada = llamada;
             llamada = null;
+            atendidos++;
         }
 
         return llamadaTerminada;
     }
     //</editor-fold>
 
+    /**
+     * Este metodo permite retirar una llamada finalizada, usando las referncias para 
+     * librear la variable llamadaFinalizada.
+     * 
+     * @return La llamada que ya termino.
+     */
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'getLlamadaFinalizada() -> Llamada'">
     public Llamada getLlamadaFinalizada()
     {
         Llamada aux = llamadaFinalizada;
         llamadaFinalizada = null;
         return aux;
     }
+    //</editor-fold>
 
     /**
      * Metodo abstracto para presentar un empleado en formato html.
+     *
      * @return
      */
     public abstract String toHtml();
@@ -129,8 +164,8 @@ public abstract class Empleado extends Thread
     @Override
     public void run()
     {
-        super.run(); 
-        while(true)
+        super.run();
+        while (true)
         {
             try
             {
@@ -143,7 +178,7 @@ public abstract class Empleado extends Thread
             }
         }
     }
-    
+
     @Override
     public String toString()
     {

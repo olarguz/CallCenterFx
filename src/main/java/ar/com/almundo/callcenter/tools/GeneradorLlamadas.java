@@ -4,6 +4,7 @@ package ar.com.almundo.callcenter.tools;
 import ar.com.almundo.callcenter.llamada.EstadoLlamada;
 import ar.com.almundo.callcenter.llamada.Llamada;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  *
@@ -11,6 +12,8 @@ import java.util.LinkedList;
  */
 public class GeneradorLlamadas
 {
+
+    private static final Random RANDOM_GENERATOR = new Random();
 
     /**
      * Este metodo permite crear una llamada.
@@ -27,10 +30,11 @@ public class GeneradorLlamadas
      * @return Una llamada nueva o null, segun la probabilidad de creacion de
      * llamadas.
      */
-    //<editor-fold defaultstate="collapsed" desc="Metodo :: crear(int) -> Llamada">
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'crear(int) -> Llamada'">
     public static Llamada crear(int probabilidad)
     {
-        int tiempoDuracion = 5 + (int) (Math.random() * 5);
+        // Se crean llamadas que duran entre 5 y 10 segundos.
+        int tiempoDuracion = RANDOM_GENERATOR.nextInt(5) + 5;
         boolean crear = 100 * Math.random() < probabilidad;
 
         return crear ? new Llamada(tiempoDuracion, EstadoLlamada.TIMBRAMDO) : null;
@@ -49,7 +53,7 @@ public class GeneradorLlamadas
      * @param probabilidad Probabilidad de creacion de cada llamada.
      * @return Listado de llamadas creadas.
      */
-    //<editor-fold defaultstate="collapsed" desc="Metodo :: crearLlamadas(int, int) -> LinkedList<Llamada>">
+    //<editor-fold defaultstate="collapsed" desc="Metodo :: 'crearLlamadas(int, int) -> LinkedList<Llamada>'">
     public static LinkedList<Llamada> crearLlamadas(int cantidad, int probabilidad)
     {
         LinkedList<Llamada> l = new LinkedList<>();
